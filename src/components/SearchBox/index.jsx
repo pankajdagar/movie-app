@@ -3,6 +3,8 @@ import Search from '@mui/icons-material/Search';
 import { InputBase } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMovieList } from '../../networkHandlers/movieListHandlers';
 
 const StyledSearch = styled('div')((props) => ({
   position: 'relative',
@@ -18,6 +20,9 @@ const StyledSearch = styled('div')((props) => ({
       '& svg': {
         visibility: 'visible',
         opacity: 1,
+      },
+      '& .close-icon': {
+        pointerEvents: 'auto',
       },
     },
   },
@@ -70,6 +75,13 @@ const CloseIconWrapper = styled(SearchIconWrapper)(() => ({
 }));
 const SearchBox = ({ onInputChange, isAppBar = false }) => {
   const inputRef = useRef(null);
+  const moviesData = useSelector((state) => state.movieList);
+  const dispatch = useDispatch();
+  const handleCloseClick = (e) => {
+    moviesData.movieSearchParams && dispatch(getMovieList())
+    inputRef.current.value = ''
+    e.preventDefault()
+  };
   return (
     <StyledSearch isAppBar={isAppBar}>
       <SearchIconWrapper>
@@ -77,11 +89,11 @@ const SearchBox = ({ onInputChange, isAppBar = false }) => {
       </SearchIconWrapper>
       <StyledInputBase
         placeholder="Title, Movies, Keywords"
-        ref={inputRef}
+        inputRef={inputRef}
         inputProps={{ 'aria-label': 'search' }}
         endAdornment={
-          <CloseIconWrapper >
-            <CloseIcon color="primary" onClick={() => console.log(inputRef.current.value)}/>
+          <CloseIconWrapper className="close-icon">
+            <CloseIcon color="primary" onMouseDown={handleCloseClick} />
           </CloseIconWrapper>
         }
         onChange={onInputChange}
