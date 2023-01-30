@@ -23,8 +23,6 @@ const MovieListWrap = styled(Box)`
   min-height: 100%;
   gap: 26px;
   grid-auto-flow: dense;
-  grid-template-columns: repeat(auto-fit, 178px);
-  justify-content: space-between;
 `;
 
 const Discover = () => {
@@ -64,7 +62,7 @@ const Discover = () => {
           <MoreVertIcon sx={{ marginLeft: '20px', height: '23px' }} />
         </RightSectionWrap>
       </Toolbar>
-      <MovieListWrap ref={discoverRef} sx={{ marginTop: { xs: '56px', sm: '0' }, gridTemplateColumns: { xs: 'repeat(auto-fit,100%)', sm: 'repeat(auto-fit, 178px)' } }}>
+      <MovieListWrap ref={discoverRef} sx={{ marginTop: { xs: '56px', sm: '0' }, gridTemplateColumns: { xs: 'repeat(auto-fit,100%)', sm: 'repeat(auto-fit, 188px)' } }}>
         {loading ? (
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
             <CircularProgress />
