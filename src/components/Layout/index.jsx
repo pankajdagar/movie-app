@@ -1,5 +1,4 @@
 import { Box, CssBaseline } from '@mui/material';
-import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { drawerWidth } from '../../globalConstants/appConstants';
 import Discover from '../Discover';
