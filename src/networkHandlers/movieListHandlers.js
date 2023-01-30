@@ -21,6 +21,7 @@ export const getMovieList =
     dispatch(appendMovieList(null));
     dispatch(fetchMovieListRequest);
     dispatch(setMovieSearchParams(searchParam));
+    dispatch(appendMovieList(null));
     try {
       dispatch(fetchMovieListRequest);
       const data = await getMovieData(searchParam);
